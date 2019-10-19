@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     String[] numberList = {"1.Click ot edit", "2.Long click ot erase memo", "3.", "4.", "5.", "6."};
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         toEdit.putExtra("No", i+1);
         toEdit.putExtra("Memo Data", numberList[i]);
+        toEdit.putExtra("Date", new Date().toString());
 
         startActivity(toEdit);
     }

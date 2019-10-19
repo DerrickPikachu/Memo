@@ -30,7 +30,8 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent preActivity = getIntent();
         numberTxv.setText(preActivity.getIntExtra("No", 1) + ".");
-        input.setText(preActivity.getStringExtra("Memo Data").substring(2));
+        input.setText(preActivity.getStringExtra("Memo Data").substring(2) + "\n"
+                    + preActivity.getStringExtra("Date"));
     }
 
     @Override
