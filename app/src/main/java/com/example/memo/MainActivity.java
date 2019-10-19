@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent toEdit = new Intent(this, EditActivity.class);
+
+        toEdit.putExtra("No", i+1);
+        toEdit.putExtra("Memo Data", numberList[i]);
+
         startActivity(toEdit);
     }
 
