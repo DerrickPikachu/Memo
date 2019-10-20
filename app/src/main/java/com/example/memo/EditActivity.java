@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Date;
+
 public class EditActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView numberTxv;
@@ -41,7 +43,10 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if (view.getId() == R.id.saveBtn) {
             String data = input.getText().toString();
+
             turnBack.putExtra("Data", data);
+            turnBack.putExtra("Date", new Date().toString());
+
             setResult(RESULT_OK, turnBack);
         }
 

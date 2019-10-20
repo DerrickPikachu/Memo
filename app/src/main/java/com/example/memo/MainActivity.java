@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,7 +57,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK) {
             String data = intent.getStringExtra("Data");
+            String modifiedDate = "modified at \n" + intent.getStringExtra("Date");
+
             numberList[id] = (id+1) + "." + data;
+            Toast.makeText(this, modifiedDate, Toast.LENGTH_LONG).show();
         }
         else if (resultCode == RESULT_CANCELED) {
             System.out.println("no content");
