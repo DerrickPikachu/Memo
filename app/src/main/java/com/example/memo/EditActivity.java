@@ -40,6 +40,8 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
             setResult(RESULT_CANCELED);
         }
         else if (view.getId() == R.id.saveBtn) {
+            String data = input.getText().toString();
+            turnBack.putExtra("Data", data);
             setResult(RESULT_OK, turnBack);
         }
 

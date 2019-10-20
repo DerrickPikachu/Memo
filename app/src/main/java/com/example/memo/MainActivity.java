@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private class MainListener implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             toEdit.putExtra("No", i+1);
             toEdit.putExtra("Memo Data", numberList[i]);
 
-//            startActivity(toEdit);
             startActivityForResult(toEdit, i);
         }
 
@@ -52,25 +51,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//        Intent toEdit = new Intent(this, EditActivity.class);
-//
-//        toEdit.putExtra("No", i+1);
-//        toEdit.putExtra("Memo Data", numberList[i]);
-//
-//        startActivity(toEdit);
-    }
-
-    @Override
-    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-//        numberList[i] = (i+1) + ".";
-//        listAdapter.notifyDataSetChanged();
-        return true;
-    }
-
-    @Override
     protected void onActivityResult(int id, int resultCode, Intent intent) {
         System.out.println("in onActivityResult!");
+
+        if (resultCode == RESULT_OK) {
+            String data = intent.getStringExtra("Data");
+            numberList[id] = (id+1) + "." + data;
+        }
+        else if (resultCode == RESULT_CANCELED) {
+            System.out.println("no content");
+        }
+
+        listAdapter.notifyDataSetChanged();
         super.onActivityResult(id, resultCode, intent);
     }
 }
