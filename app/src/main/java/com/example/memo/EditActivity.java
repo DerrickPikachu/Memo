@@ -35,6 +35,14 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        Intent turnBack = new Intent();
+        if (view.getId() == R.id.cancelBtn) {
+            setResult(RESULT_CANCELED);
+        }
+        else if (view.getId() == R.id.saveBtn) {
+            setResult(RESULT_OK, turnBack);
+        }
+
         finish();
     }
 }
