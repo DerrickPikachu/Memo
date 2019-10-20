@@ -30,12 +30,22 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent preActivity = getIntent();
         numberTxv.setText(preActivity.getIntExtra("No", 1) + ".");
-        input.setText(preActivity.getStringExtra("Memo Data").substring(2) + "\n"
-                    + preActivity.getStringExtra("Date"));
+        input.setText(preActivity.getStringExtra("Memo Data").substring(2));
     }
 
     @Override
     public void onClick(View view) {
+//        if (view.getId() == R.id.saveBtn) {
+//            String data = input.getText().toString();
+//            Intent turnBack = new Intent(this, MainActivity.class);
+//
+//            turnBack.putExtra("Data", data);
+//            setResult(RESULT_OK, turnBack);
+//        }
+//        else if (view.getId() == R.id.cancelBtn){
+//            setResult(RESULT_CANCELED);
+//        }
+
         finish();
     }
 }

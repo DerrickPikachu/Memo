@@ -13,9 +13,46 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
-    String[] numberList = {"1.Click ot edit", "2.Long click ot erase memo", "3.", "4.", "5.", "6."};
-    ArrayAdapter<String> listAdapter;
-    ListView memoList;
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        toEdit.putExtra("No", i+1);
+        toEdit.putExtra("Memo Data", numberList[i]);
+        startActivity(toEdit);
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+        numberList[i] = (i+1) + ".";
+        listAdapter.notifyDataSetChanged();
+        return true;
+    }
+
+//    private class MainListener implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+//
+//        @Override
+//        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//            toEdit.putExtra("No", i+1);
+//            toEdit.putExtra("Memo Data", numberList[i]);
+////            toEdit.putExtra("Date", new Date().toString());
+//
+////            startActivityForResult(toEdit, i);
+//            startActivity(toEdit);
+//        }
+//
+//        @Override
+//        public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+//            numberList[i] = (i+1) + ".";
+//            listAdapter.notifyDataSetChanged();
+//            return true;
+//        }
+//    }
+
+    private String[] numberList = {"1.Click ot edit", "2.Long click ot erase memo", "3.", "4.", "5.", "6."};
+    private ArrayAdapter<String> listAdapter;
+    private ListView memoList;
+    private Intent toEdit = new Intent(this, EditActivity.class);
+//    MainListener listener = new MainListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +66,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         memoList.setOnItemLongClickListener(this);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent toEdit = new Intent(this, EditActivity.class);
-
-        toEdit.putExtra("No", i+1);
-        toEdit.putExtra("Memo Data", numberList[i]);
-        toEdit.putExtra("Date", new Date().toString());
-
-        startActivity(toEdit);
-    }
-
-    @Override
-    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-        numberList[i] = (i+1) + ".";
-        listAdapter.notifyDataSetChanged();
-        return true;
-    }
+//    protected void onActivityResult(int id, int resultNo, Intent intent) {
+//        if (resultNo == RESULT_CANCELED) {
+//            numberList[id] = id + ",";
+//        }
+//        else if (resultNo == RESULT_OK) {
+//            String data = intent.getStringExtra("Data");
+//            numberList[id] = id + "." + data;
+//        }
+//
+//        listAdapter.notifyDataSetChanged();
+//        super.onActivityResult(id, resultNo, intent);
+//    }
 }
